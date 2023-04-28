@@ -24,6 +24,8 @@
     "task"
   ],
   "scripts": {
+    "clean": "if exist dist ( rd /S /Q dist)",
+    "updateLink": "npm run clean && tsc && npm rm gantt-task-react -g && npm link",
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepare": "run-s build",

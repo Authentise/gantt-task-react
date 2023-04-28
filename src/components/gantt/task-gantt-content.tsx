@@ -56,6 +56,7 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
   onClick,
   onDelete,
 }) => {
+  console.log("gantt task contetn")
   const point = svg?.current?.createSVGPoint();
   const [xStep, setXStep] = useState(0);
   const [initEventX1Delta, setInitEventX1Delta] = useState(0);
@@ -202,7 +203,7 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
   ) => {
     if (!event) {
       if (action === "select") {
-        setSelectedTask(task.id);
+        setSelectedTask(task?.id);
       }
     }
     // Keyboard events
@@ -267,7 +268,7 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
           return task.barChildren.map(child => {
             return (
               <Arrow
-                key={`Arrow from ${task.id} to ${tasks[child.index].id}`}
+                key={`Arrow from ${task?.id} to ${tasks[child.index]?.id}`}
                 taskFrom={task}
                 taskTo={tasks[child.index]}
                 rowHeight={rowHeight}
@@ -290,8 +291,8 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
               isDateChangeable={!!onDateChange && !task.isDisabled}
               isDelete={!task.isDisabled}
               onEventStart={handleBarEventStart}
-              key={task.id}
-              isSelected={!!selectedTask && task.id === selectedTask.id}
+              key={task?.id}
+              isSelected={!!selectedTask && task?.id === selectedTask?.id}
               rtl={rtl}
             />
           );

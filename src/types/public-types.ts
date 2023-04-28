@@ -9,13 +9,14 @@ export enum ViewMode {
   QuarterYear = "QuarterYear",
   Year = "Year",
 }
-export type TaskType = "task" | "milestone" | "project";
+export type TaskType = "task" | "milestone" | "project" | "threads-event";
 export interface Task {
   id: string;
   type: TaskType;
   name: string;
   start: Date;
   end: Date;
+  orderIndex: number;
   /**
    * From 0 to 100
    */
