@@ -123,7 +123,8 @@ import React, {
       setDateSetup({ dates: newDates, viewMode });
       setBarTasks(
         convertToBarTasks(
-          filteredTasks,
+          // Make all the tasks of type 'milestone'
+          filteredTasks.map(task => ({ ...task, type: 'milestone' })),
           newDates,
           columnWidth,
           rowHeight,
@@ -464,6 +465,7 @@ import React, {
         >
           {listCellWidth && <TaskList {...tableProps} />}
           <TaskGantt
+            isEventGantt={true}
             gridProps={gridProps}
             calendarProps={calendarProps}
             barProps={barProps}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { EventOption } from "../../types/public-types";
+import { EventOption, EventTaskGanttProps } from "../../types/public-types";
 import { BarTask } from "../../types/bar-task";
 import { Arrow } from "../other/arrow";
 import { handleTaskBySVGMouseEvent } from "../../helpers/bar-helper";
@@ -10,6 +10,7 @@ import {
   GanttContentMoveAction,
   GanttEvent,
 } from "../../types/gantt-task-actions";
+import { EventItem } from "../task-item/event-item";
 
 export type TaskGanttContentProps = {
   tasks: BarTask[];
@@ -33,7 +34,8 @@ export type TaskGanttContentProps = {
   setSelectedTask: (taskId: string) => void;
 } & EventOption;
 
-export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
+export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttProps> = ({
+  isEventGantt,
   tasks,
   events,
   dates,
@@ -58,7 +60,8 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
   onClick,
   onDelete,
 }) => {
-  console.log("11:50 gantt task contetn")
+  console.log("14:56 gantt task contetn")
+  console.log({isEventGantt});
   const point = svg?.current?.createSVGPoint();
   const [xStep, setXStep] = useState(0);
   const [initEventX1Delta, setInitEventX1Delta] = useState(0);
@@ -263,6 +266,8 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
     }
   };
 
+  console.log({events})
+
   return (
     <g className="content">
       <g className="arrows" fill={arrowColor} stroke={arrowColor}>
@@ -283,14 +288,30 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
         })}
       </g>
       <g className="bar" fontFamily={fontFamily} fontSize={fontSize}>
-        {tasks.map(task => {
-          const eventsForTask = events?.filter(event => event.thread === Number(task.id));
-          console.log({eventsForTask})
+        {isEventGantt ? (
+          tasks?.map(event => {
+            // const eventsForTask = events?.filter(event => event.thread === Number(task.id));
 
+            return (
+              <EventItem
+                task={event}
+                // eventsForTask={eventsForTask}
+                arrowIndent={arrowIndent}
+                taskHeight={taskHeight}
+                isProgressChangeable={!!onProgressChange && !event.isDisabled}
+                isDateChangeable={!!onDateChange && !event.isDisabled}
+                isDelete={!event.isDisabled}
+                onEventStart={handleBarEventStart}
+                key={event?.id}
+                isSelected={!!selectedTask && event?.id === selectedTask?.id}
+                rtl={rtl}
+              />
+            );
+          })
+        ) : (tasks.map(task => {
           return (
             <TaskItem
               task={task}
-              eventsForTask={eventsForTask}
               arrowIndent={arrowIndent}
               taskHeight={taskHeight}
               isProgressChangeable={!!onProgressChange && !task.isDisabled}
@@ -302,7 +323,7 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
               rtl={rtl}
             />
           );
-        })}
+        }))}
       </g>
     </g>
   );

@@ -148,3 +148,7 @@ export interface GanttProps extends EventOption, DisplayOption, StylingOption {
 export interface EventGanttProps extends GanttProps {
   events: any[];
 }
+
+export type EventTaskGanttProps = {
+  isEventGantt?: boolean;
+}
