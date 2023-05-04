@@ -5,7 +5,7 @@ import React, {
     useEffect,
     useMemo,
   } from "react";
-  import { ViewMode, GanttProps, Task } from "../../types/public-types";
+  import { ViewMode, Task, EventGanttProps } from "../../types/public-types";
   import { GridProps } from "../grid/grid";
   import { ganttDateRange, seedDates } from "../../helpers/date-helper";
   import { CalendarProps } from "../calendar/calendar";
@@ -24,8 +24,9 @@ import React, {
   import { removeHiddenTasks, sortTasks } from "../../helpers/other-helper";
   import styles from "./gantt.module.css";
   
-  export const ThreadsEventGantt: React.FunctionComponent<GanttProps> = ({
+  export const ThreadsEventGantt: React.FunctionComponent<EventGanttProps> = ({
     tasks,
+    events = [],
     headerHeight = 50,
     columnWidth = 60,
     listCellWidth = "155px",
@@ -407,7 +408,9 @@ import React, {
       rtl,
     };
     const barProps: TaskGanttContentProps = {
-      tasks: barTasks.map(task => ({ ...task, type: 'threads-event' })),
+      // Marshalling the `barTasks`
+      tasks: barTasks.map(task => ({ ...task, typeInternal: 'threads-event' })),
+      events,
       dates: dateSetup.dates,
       ganttEvent,
       selectedTask,
@@ -430,6 +433,8 @@ import React, {
       onClick,
       onDelete,
     };
+
+    console.log({barProps})
   
     const tableProps: TaskListProps = {
       rowHeight,

@@ -6,10 +6,11 @@ import { BarSmall } from "./bar/bar-small";
 import { Milestone } from "./milestone/milestone";
 import { Project } from "./project/project";
 import style from "./task-list.module.css";
-import ThreadsEventBar from "./bar/threads-event";
+import { ThreadsEventBar } from "./bar/threads-event-bar";
 
 export type TaskItemProps = {
   task: BarTask;
+  eventsForTask?: any[];
   arrowIndent: number;
   taskHeight: number;
   isProgressChangeable: boolean;
@@ -52,7 +53,8 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
         setTaskItem(<BarSmall {...props} />);
         break;
       case "threads-event":
-        setTaskItem(<ThreadsEventBar {...props} />)
+        setTaskItem(<ThreadsEventBar {...props} />);
+        break;
       default:
         setTaskItem(<Bar {...props} />);
         break;

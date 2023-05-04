@@ -1,10 +1,10 @@
 import React from "react";
 import { getProgressPoint } from "../../../helpers/bar-helper";
-import { BarDisplay } from "./bar-display";
 import { BarDateHandle } from "./bar-date-handle";
 import { BarProgressHandle } from "./bar-progress-handle";
 import { TaskItemProps } from "../task-item";
 import styles from "./bar.module.css";
+import { ThreadsEventBarDisplay } from "./threads-event-bar-display";
 
 export const ThreadsEventBar: React.FC<TaskItemProps> = ({
   task,
@@ -20,9 +20,12 @@ export const ThreadsEventBar: React.FC<TaskItemProps> = ({
     task.height
   );
   const handleHeight = task.height - 2;
+  console.log({task})
+  console.log({taskBarchildren: task.barChildren})
+
   return (
     <g className={styles.barWrapper} tabIndex={0}>
-      <BarDisplay
+      <ThreadsEventBarDisplay
         x={task.x1}
         y={task.y}
         width={task.x2 - task.x1}
