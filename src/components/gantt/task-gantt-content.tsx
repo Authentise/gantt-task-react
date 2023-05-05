@@ -60,7 +60,7 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
   onClick,
   onDelete,
 }) => {
-  console.log(">>>> 13:42 gantt task contetn")
+  console.log(">>>> 14:56 gantt task contetn")
   console.log({isEventGantt});
   const point = svg?.current?.createSVGPoint();
   const [xStep, setXStep] = useState(0);
@@ -271,14 +271,30 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
 
   const tasksWithEvents = tasks.map(task => ({
     ...task, 
-    event: events?.find(event => Number(event.id) === Number(task.id))}))
+    event: events?.find(event => Number(event.id) === Number(task.id)), 
+  }))
 
     console.log({tasksWithEvents})
 
   return (
     <g className="content">
       <g className="arrows" fill={arrowColor} stroke={arrowColor}>
-        {tasks.map(task => {
+        {isEventGantt ? (
+          tasksWithEvents.map((task, index: number) => {
+            console.log({index})
+              return (
+                <Arrow
+                  key={`Arrow from ${task?.id} to ${tasks[index]?.id}`}
+                  taskFrom={task}
+                  taskTo={tasksWithEvents[index + 1] ? tasksWithEvents[index + 1] : tasksWithEvents[tasksWithEvents.length - 1]}
+                  rowHeight={rowHeight}
+                  taskHeight={taskHeight}
+                  arrowIndent={arrowIndent}
+                  rtl={rtl}
+                />
+              );
+          })
+        ) : (tasks.map(task => {
           return task.barChildren.map(child => {
             return (
               <Arrow
@@ -292,7 +308,7 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
               />
             );
           });
-        })}
+        }))}
       </g>
       <g className="bar" fontFamily={fontFamily} fontSize={fontSize}>
         {isEventGantt ? (
