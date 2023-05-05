@@ -26,6 +26,7 @@ export const ThreadsEventBar: React.FC<TaskItemProps> = ({
   return (
     <g className={styles.barWrapper} tabIndex={0}>
       <ThreadsEventBarDisplay
+        event={task.event}
         x={task.x1}
         y={task.y}
         width={task.x2 - task.x1}

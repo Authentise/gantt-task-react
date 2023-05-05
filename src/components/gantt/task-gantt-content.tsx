@@ -60,7 +60,7 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
   onClick,
   onDelete,
 }) => {
-  console.log("14:56 gantt task contetn")
+  console.log(">>>> 13:42 gantt task contetn")
   console.log({isEventGantt});
   const point = svg?.current?.createSVGPoint();
   const [xStep, setXStep] = useState(0);
@@ -266,7 +266,14 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
     }
   };
 
+  console.log({tasks})
   console.log({events})
+
+  const tasksWithEvents = tasks.map(task => ({
+    ...task, 
+    event: events?.find(event => Number(event.id) === Number(task.id))}))
+
+    console.log({tasksWithEvents})
 
   return (
     <g className="content">
@@ -289,21 +296,21 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
       </g>
       <g className="bar" fontFamily={fontFamily} fontSize={fontSize}>
         {isEventGantt ? (
-          tasks?.map(event => {
+          tasksWithEvents?.map(task => {
             // const eventsForTask = events?.filter(event => event.thread === Number(task.id));
 
             return (
               <EventItem
-                task={event}
+                task={task}
                 // eventsForTask={eventsForTask}
                 arrowIndent={arrowIndent}
                 taskHeight={taskHeight}
-                isProgressChangeable={!!onProgressChange && !event.isDisabled}
-                isDateChangeable={!!onDateChange && !event.isDisabled}
-                isDelete={!event.isDisabled}
+                isProgressChangeable={!!onProgressChange && !task.isDisabled}
+                isDateChangeable={!!onDateChange && !task.isDisabled}
+                isDelete={!task.isDisabled}
                 onEventStart={handleBarEventStart}
-                key={event?.id}
-                isSelected={!!selectedTask && event?.id === selectedTask?.id}
+                key={task?.id}
+                isSelected={!!selectedTask && task?.id === selectedTask?.id}
                 rtl={rtl}
               />
             );

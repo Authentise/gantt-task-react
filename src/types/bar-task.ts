@@ -1,6 +1,7 @@
 import { Task, TaskType } from "./public-types";
 
 export interface BarTask extends Task {
+  event?: any;
   index: number;
   typeInternal: TaskTypeInternal;
   x1: number;
@@ -12,6 +13,7 @@ export interface BarTask extends Task {
   barCornerRadius: number;
   handleWidth: number;
   barChildren: BarTask[];
+  thread?: number;
   styles: {
     backgroundColor: string;
     backgroundSelectedColor: string;

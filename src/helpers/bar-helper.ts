@@ -26,6 +26,7 @@ export const convertToBarTasks = (
     return convertToBarTask(
       t,
       i,
+      // Number(t.orderIndex),
       dates,
       columnWidth,
       rowHeight,
@@ -270,7 +271,8 @@ const taskYCoordinate = (
   taskHeight: number
 ) => {
   const y = index * rowHeight + (rowHeight - taskHeight) / 2;
-  return y;
+  console.log({index, rowHeight, taskHeight,y})
+  return 8.25
 };
 
 export const progressWithByParams = (
