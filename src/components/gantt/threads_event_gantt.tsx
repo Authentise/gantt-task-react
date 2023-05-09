@@ -66,6 +66,7 @@ import React, {
     onDelete,
     onSelect,
     onExpanderClick,
+    threads,
   }) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const taskListRef = useRef<HTMLDivElement>(null);
@@ -120,11 +121,12 @@ import React, {
           setScrollX(newDates.length * columnWidth);
         }
       }
+      console.log({MarshalledFilteredTasks: filteredTasks.map(task => ({ ...task, type: 'milestone', orderIndex: task.thread! }))})
       setDateSetup({ dates: newDates, viewMode });
       setBarTasks(
         convertToBarTasks(
           // Make all the tasks of type 'milestone'
-          filteredTasks.map(task => ({ ...task, type: 'milestone' })),
+          filteredTasks.map(task => ({ ...task, type: 'milestone', orderIndex: (task.thread! - 1)})),
           newDates,
           columnWidth,
           rowHeight,
@@ -141,7 +143,8 @@ import React, {
           projectBackgroundColor,
           projectBackgroundSelectedColor,
           milestoneBackgroundColor,
-          milestoneBackgroundSelectedColor
+          milestoneBackgroundSelectedColor,
+          true // Is an event? Yes
         )
       );
     }, [
@@ -392,7 +395,7 @@ import React, {
     const gridProps: GridProps = {
       columnWidth,
       svgWidth,
-      tasks: tasks,
+      tasks: threads!,
       rowHeight,
       dates: dateSetup.dates,
       todayColor,

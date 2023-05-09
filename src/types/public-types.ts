@@ -17,6 +17,7 @@ export interface Task {
   start: Date;
   end: Date;
   orderIndex: number;
+  thread?: number;
   /**
    * From 0 to 100
    */
@@ -147,6 +148,7 @@ export interface GanttProps extends EventOption, DisplayOption, StylingOption {
 
 export interface EventGanttProps extends GanttProps {
   events: any[];
+  threads?: Task[];
 }
 
 export type EventTaskGanttProps = {

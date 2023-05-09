@@ -33,6 +33,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
       className={styles.gridRowLine}
     />,
   ];
+  console.log({gridBodyTasks: tasks})
   for (const task of tasks) {
     gridRows.push(
       <rect

@@ -20,13 +20,13 @@ export const convertToBarTasks = (
   projectBackgroundColor: string,
   projectBackgroundSelectedColor: string,
   milestoneBackgroundColor: string,
-  milestoneBackgroundSelectedColor: string
+  milestoneBackgroundSelectedColor: string,
+  isEvent: boolean = false,
 ) => {
   let barTasks = tasks.map((t, i) => {
     return convertToBarTask(
       t,
-      i,
-      // Number(t.orderIndex),
+      isEvent ? t.orderIndex : i,
       dates,
       columnWidth,
       rowHeight,
@@ -43,7 +43,7 @@ export const convertToBarTasks = (
       projectBackgroundColor,
       projectBackgroundSelectedColor,
       milestoneBackgroundColor,
-      milestoneBackgroundSelectedColor
+      milestoneBackgroundSelectedColor,
     );
   });
 
@@ -272,7 +272,7 @@ const taskYCoordinate = (
 ) => {
   const y = index * rowHeight + (rowHeight - taskHeight) / 2;
   console.log({index, rowHeight, taskHeight,y})
-  return 8.25
+  return y;
 };
 
 export const progressWithByParams = (
