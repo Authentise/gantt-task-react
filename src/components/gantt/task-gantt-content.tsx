@@ -60,7 +60,7 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
   onClick,
   onDelete,
 }) => {
-  console.log(">>>> 11:16 gantt task contetn")
+  console.log(">>>> 15:19 gantt task contetn")
   console.log({isEventGantt});
   const point = svg?.current?.createSVGPoint();
   const [xStep, setXStep] = useState(0);
@@ -291,6 +291,7 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
                   taskHeight={taskHeight}
                   arrowIndent={arrowIndent}
                   rtl={rtl}
+                  isEventGantt={isEventGantt}
                 />
               );
           })

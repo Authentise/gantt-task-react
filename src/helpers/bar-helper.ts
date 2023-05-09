@@ -217,7 +217,7 @@ const convertToMilestone = (
   const y = taskYCoordinate(index, rowHeight, taskHeight);
 
   const x1 = x - taskHeight * 0.5;
-  const x2 = x + taskHeight * 0.5;
+  const x2 = x + taskHeight * 0.2;
 
   const rotatedHeight = taskHeight / 1.414;
   const styles = {

@@ -9,7 +9,10 @@ type ArrowProps = {
   arrowIndent: number;
   rtl: boolean;
 };
-export const Arrow: React.FC<ArrowProps> = ({
+interface EventProps extends ArrowProps {
+  isEventGantt?: boolean;
+};
+export const Arrow: React.FC<ArrowProps & EventProps> = ({
   taskFrom,
   taskTo,
   rowHeight,
@@ -33,7 +36,7 @@ export const Arrow: React.FC<ArrowProps> = ({
       taskTo,
       rowHeight,
       taskHeight,
-      arrowIndent
+      arrowIndent,
     );
   }
 

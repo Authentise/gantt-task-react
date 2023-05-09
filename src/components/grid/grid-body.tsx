@@ -33,11 +33,13 @@ export const GridBody: React.FC<GridBodyProps> = ({
       className={styles.gridRowLine}
     />,
   ];
-  console.log({gridBodyTasks: tasks})
-  for (const task of tasks) {
+  for (let i = 0; i < tasks.length; i++) {
+  // for (const task of tasks) {
+    console.log("ADDED TASK GRID-BODY (task)>>>",tasks[i])
     gridRows.push(
       <rect
-        key={"Row" + task.id}
+        id={"Row" + i}
+        key={"Row" + i}
         x="0"
         y={y}
         width={svgWidth}
@@ -47,7 +49,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
     );
     rowLines.push(
       <line
-        key={"RowLine" + task.id}
+        key={"RowLine" + i}
         x="0"
         y1={y + rowHeight}
         x2={svgWidth}
