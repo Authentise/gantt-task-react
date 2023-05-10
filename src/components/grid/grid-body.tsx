@@ -1,4 +1,4 @@
-import React, { ReactChild } from "react";
+import React, { ReactChild, ReactElement } from "react";
 import { Task } from "../../types/public-types";
 import { addToDate } from "../../helpers/date-helper";
 import styles from "./grid.module.css";
@@ -22,8 +22,8 @@ export const GridBody: React.FC<GridBodyProps> = ({
   rtl,
 }) => {
   let y = 0;
-  const gridRows: ReactChild[] = [];
-  const rowLines: ReactChild[] = [
+  const gridRows: ReactElement[] = [];
+  const rowLines: ReactElement[] = [
     <line
       key="RowLineFirst"
       x="0"

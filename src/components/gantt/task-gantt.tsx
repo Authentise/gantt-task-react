@@ -40,6 +40,8 @@ export const TaskGantt: React.FC<TaskGanttProps & EventTaskGanttProps> = ({
     }
   }, [scrollX]);
 
+  console.log({barProps})
+
   return (
     <div
       className={styles.ganttVerticalContainer}
@@ -66,7 +68,9 @@ export const TaskGantt: React.FC<TaskGanttProps & EventTaskGanttProps> = ({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width={gridProps.svgWidth}
-          height={barProps.rowHeight * barProps.tasks.length}
+          height={isEventGantt ? 
+            barProps.rowHeight * barProps.threads!.length: 
+            barProps.rowHeight * barProps.tasks.length}
           fontFamily={barProps.fontFamily}
           ref={ganttSVGRef}
         >

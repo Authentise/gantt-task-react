@@ -436,6 +436,7 @@ import React, {
       onDoubleClick,
       onClick,
       onDelete,
+      threads,
     };
 
     console.log({barProps})

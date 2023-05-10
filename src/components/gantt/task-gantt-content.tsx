@@ -32,6 +32,7 @@ export type TaskGanttContentProps = {
   setGanttEvent: (value: GanttEvent) => void;
   setFailedTask: (value: BarTask | null) => void;
   setSelectedTask: (taskId: string) => void;
+  threads?: any[];
 } & EventOption;
 
 export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttProps> = ({
@@ -60,7 +61,7 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
   onClick,
   onDelete,
 }) => {
-  console.log(">>>> 15:19 gantt task contetn")
+  console.log(">>>> 13:16 gantt task contetn")
   console.log({isEventGantt});
   const point = svg?.current?.createSVGPoint();
   const [xStep, setXStep] = useState(0);
