@@ -61,8 +61,6 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
   onClick,
   onDelete,
 }) => {
-  console.log(">>>> 13:16 gantt task contetn")
-  console.log({isEventGantt});
   const point = svg?.current?.createSVGPoint();
   const [xStep, setXStep] = useState(0);
   const [initEventX1Delta, setInitEventX1Delta] = useState(0);
@@ -267,27 +265,31 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
     }
   };
 
-  console.log({tasks})
-  console.log({events})
-
   const tasksWithEvents = tasks.map(task => ({
     ...task, 
     event: events?.find(event => Number(event.id) === Number(task.id)), 
   }))
-
-    console.log({tasksWithEvents})
 
   return (
     <g className="content">
       <g className="arrows" fill={arrowColor} stroke={arrowColor}>
         {isEventGantt ? (
           tasksWithEvents.map((task, index: number) => {
-            console.log({index})
+              const tasksWithEventsWithMatchingThread = tasksWithEvents.filter(innerTask => (
+                innerTask.thread === task.thread
+              ))
+
+              if (index === (tasksWithEventsWithMatchingThread.length - 1)) {
+                return false;
+              }
+
               return (
                 <Arrow
                   key={`Arrow from ${task?.id} to ${tasks[index]?.id}`}
                   taskFrom={task}
-                  taskTo={tasksWithEvents[index + 1] ? tasksWithEvents[index + 1] : tasksWithEvents[tasksWithEvents.length - 1]}
+                  taskTo={tasksWithEventsWithMatchingThread[index + 1] ? 
+                    tasksWithEventsWithMatchingThread[index + 1] : 
+                    task}
                   rowHeight={rowHeight}
                   taskHeight={taskHeight}
                   arrowIndent={arrowIndent}

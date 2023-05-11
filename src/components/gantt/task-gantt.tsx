@@ -40,8 +40,6 @@ export const TaskGantt: React.FC<TaskGanttProps & EventTaskGanttProps> = ({
     }
   }, [scrollX]);
 
-  console.log({barProps})
-
   return (
     <div
       className={styles.ganttVerticalContainer}

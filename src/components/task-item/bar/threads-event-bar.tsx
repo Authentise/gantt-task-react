@@ -20,8 +20,6 @@ export const ThreadsEventBar: React.FC<TaskItemProps> = ({
     task.height
   );
   const handleHeight = task.height - 2;
-  console.log({task})
-  console.log({taskBarchildren: task.barChildren})
 
   return (
     <g className={styles.barWrapper} tabIndex={0}>

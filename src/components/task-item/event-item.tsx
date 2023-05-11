@@ -56,24 +56,6 @@ export const EventItem: React.FC<EventItemProps> = props => {
     }
   }, [task, isSelected]);
 
-//   const getX = () => {
-//     const width = task.x2 - task.x1;
-//     const hasChild = task.barChildren.length > 0;
-//     if (isTextInside) {
-//       return task.x1 + width * 0.5;
-//     }
-//     if (rtl && textRef.current) {
-//       return (
-//         task.x1 -
-//         textRef.current.getBBox().width -
-//         arrowIndent * +hasChild -
-//         arrowIndent * 0.2
-//       );
-//     } else {
-//       return task.x1 + width + arrowIndent * +hasChild + arrowIndent * 0.2;
-//     }
-//   };
-
   return (
     <g
       onKeyDown={e => {

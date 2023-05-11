@@ -19,6 +19,7 @@ export const Arrow: React.FC<ArrowProps & EventProps> = ({
   taskHeight,
   arrowIndent,
   rtl,
+  isEventGantt,
 }) => {
   let path: string;
   let trianglePoints: string;
@@ -37,6 +38,7 @@ export const Arrow: React.FC<ArrowProps & EventProps> = ({
       rowHeight,
       taskHeight,
       arrowIndent,
+      isEventGantt
     );
   }
 
@@ -53,7 +55,8 @@ const drownPathAndTriangle = (
   taskTo: BarTask,
   rowHeight: number,
   taskHeight: number,
-  arrowIndent: number
+  arrowIndent: number,
+  isEventGantt: boolean = false,
 ) => {
   const indexCompare = taskFrom.index > taskTo.index ? -1 : 1;
   const taskToEndPosition = taskTo.y + taskHeight / 2;
@@ -72,10 +75,15 @@ const drownPathAndTriangle = (
   V ${taskToEndPosition} 
   h ${taskToHorizontalOffsetValue}`;
 
+  const eventPath = `M ${taskFrom.x2} ${taskFrom.y + taskHeight / 2} 
+  h ${arrowIndent} 
+  ${taskFromHorizontalOffsetValue} 
+  h ${taskToHorizontalOffsetValue}`;
+
   const trianglePoints = `${taskTo.x1},${taskToEndPosition} 
   ${taskTo.x1 - 5},${taskToEndPosition - 5} 
   ${taskTo.x1 - 5},${taskToEndPosition + 5}`;
-  return [path, trianglePoints];
+  return [isEventGantt ? eventPath : path, trianglePoints];
 };
 
 const drownPathAndTriangleRTL = (

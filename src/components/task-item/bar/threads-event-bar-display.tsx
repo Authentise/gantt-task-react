@@ -1,5 +1,4 @@
 import React from "react";
-import style from "./bar.module.css";
 
 type ThreadsEventBarDisplayProps = {
   event: any;
@@ -24,26 +23,15 @@ export const ThreadsEventBarDisplay: React.FC<ThreadsEventBarDisplayProps> = ({
   event,
   x,
   y,
-  width,
-  height,
-  isSelected,
-  progressX,
-  progressWidth,
-  barCornerRadius,
-  styles,
+  // width,
+  // height,
+  // isSelected,
+  // progressX,
+  // progressWidth,
+  // barCornerRadius,
+  // styles,
   onMouseDown,
 }) => {
-  const getProcessColor = () => {
-    return isSelected ? styles.progressSelectedColor : styles.progressColor;
-  };
-
-  const getBarColor = () => {
-    return isSelected ? styles.backgroundSelectedColor : styles.backgroundColor;
-  };
-
-  console.log({event})
-  console.log({eventType: event.type})
-
   const renderEventIcon = () => {
     switch (event.type) {
       case 'QUESTION':
@@ -122,35 +110,9 @@ export const ThreadsEventBarDisplay: React.FC<ThreadsEventBarDisplayProps> = ({
     }
   }
 
-  console.log({ignore: renderEventIcon});
-
   return (
     <g onMouseDown={onMouseDown}>
       {renderEventIcon()}
     </g>
   )
-
-  return (
-    <g onMouseDown={onMouseDown}>
-      <rect
-        x={x}
-        width={width}
-        y={y}
-        height={height}
-        ry={barCornerRadius}
-        rx={barCornerRadius}
-        fill={getBarColor()}
-        className={style.barBackground}
-      />
-      <rect
-        x={progressX}
-        width={progressWidth}
-        y={y}
-        height={height}
-        ry={barCornerRadius}
-        rx={barCornerRadius}
-        fill={getProcessColor()}
-      />
-    </g>
-  );
 };

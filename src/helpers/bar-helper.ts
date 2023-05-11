@@ -271,7 +271,6 @@ const taskYCoordinate = (
   taskHeight: number
 ) => {
   const y = index * rowHeight + (rowHeight - taskHeight) / 2;
-  console.log({index, rowHeight, taskHeight,y})
   return y;
 };
 

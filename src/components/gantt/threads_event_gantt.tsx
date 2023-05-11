@@ -121,7 +121,6 @@ import React, {
           setScrollX(newDates.length * columnWidth);
         }
       }
-      console.log({MarshalledFilteredTasks: filteredTasks.map(task => ({ ...task, type: 'milestone', orderIndex: task.thread! }))})
       setDateSetup({ dates: newDates, viewMode });
       setBarTasks(
         convertToBarTasks(
@@ -438,8 +437,6 @@ import React, {
       onDelete,
       threads,
     };
-
-    console.log({barProps})
   
     const tableProps: TaskListProps = {
       rowHeight,

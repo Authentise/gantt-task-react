@@ -120,7 +120,6 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
       }
     }
     setDateSetup({ dates: newDates, viewMode });
-    console.log({filteredTasks})
     setBarTasks(
       convertToBarTasks(
         filteredTasks,
