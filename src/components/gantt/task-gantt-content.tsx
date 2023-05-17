@@ -270,10 +270,26 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
     event: events?.find(event => Number(event.id) === Number(task.id)), 
   }))
 
+  console.log({tasksWithEvents})
+
   return (
     <g className="content">
       <g className="arrows" fill={arrowColor} stroke={arrowColor}>
         {isEventGantt ? (
+          tasks.map(task => (task.barChildren.map((barChild) => {
+              return (
+                  <Arrow
+                  key={`Arrow from ${task?.id} to ${tasks[barChild.index]?.id}`}
+                  taskFrom={task}
+                  taskTo={tasks[barChild.index]}
+                  rowHeight={rowHeight}
+                  taskHeight={taskHeight}
+                  arrowIndent={arrowIndent}
+                  rtl={rtl}
+                />
+              )
+            })
+          )),
           tasksWithEvents.map((task, index: number) => {
               const tasksWithEventsWithMatchingThread = tasksWithEvents.filter(innerTask => (
                 innerTask.thread === task.thread
@@ -283,20 +299,21 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
                 return false;
               }
 
-              return (
+              return ([
                 <Arrow
                   key={`Arrow from ${task?.id} to ${tasks[index]?.id}`}
                   taskFrom={task}
-                  taskTo={tasksWithEventsWithMatchingThread[index + 1] ? 
-                    tasksWithEventsWithMatchingThread[index + 1] : 
-                    task}
+                  // taskTo={tasksWithEventsWithMatchingThread[index + 1] ? 
+                  //   tasksWithEventsWithMatchingThread[index + 1] : 
+                  //   task}
+                  taskTo={tasksWithEventsWithMatchingThread[0]}
                   rowHeight={rowHeight}
                   taskHeight={taskHeight}
                   arrowIndent={arrowIndent}
                   rtl={rtl}
                   isEventGantt={isEventGantt}
-                />
-              );
+                />,
+              ]);
           })
         ) : (tasks.map(task => {
           return task.barChildren.map(child => {

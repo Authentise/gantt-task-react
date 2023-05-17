@@ -49,6 +49,7 @@ export const convertToBarTasks = (
 
   // set dependencies
   barTasks = barTasks.map(task => {
+    console.log("bar-helper->task", task)
     const dependencies = task.dependencies || [];
     for (let j = 0; j < dependencies.length; j++) {
       const dependence = barTasks.findIndex(
@@ -270,6 +271,7 @@ const taskYCoordinate = (
   rowHeight: number,
   taskHeight: number
 ) => {
+  console.log({index, rowHeight, taskHeight})
   const y = index * rowHeight + (rowHeight - taskHeight) / 2;
   return y;
 };

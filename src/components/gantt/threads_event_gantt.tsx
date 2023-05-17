@@ -11,7 +11,6 @@ import React, {
   import { CalendarProps } from "../calendar/calendar";
   import { TaskGanttContentProps } from "./task-gantt-content";
   import { TaskListHeaderDefault } from "../task-list/task-list-header";
-  import { TaskListTableDefault } from "../task-list/task-list-table";
   import { StandardTooltipContent, Tooltip } from "../other/tooltip";
   import { VerticalScroll } from "../other/vertical-scroll";
   import { TaskListProps, TaskList } from "../task-list/task-list";
@@ -23,6 +22,7 @@ import React, {
   import { HorizontalScroll } from "../other/horizontal-scroll";
   import { removeHiddenTasks, sortTasks } from "../../helpers/other-helper";
   import styles from "./gantt.module.css";
+import { TaskListTableDefault } from "../task-list/task-list-table";
   
   export const ThreadsEventGantt: React.FunctionComponent<EventGanttProps> = ({
     tasks,
@@ -82,6 +82,7 @@ import React, {
     const [svgContainerWidth, setSvgContainerWidth] = useState(0);
     const [svgContainerHeight, setSvgContainerHeight] = useState(ganttHeight);
     const [barTasks, setBarTasks] = useState<BarTask[]>([]);
+    console.log("threads_event_gantt->barTasks", barTasks.map(task => ({ ...task, typeInternal: 'threads-event' })))
     const [ganttEvent, setGanttEvent] = useState<GanttEvent>({
       action: "",
     });
@@ -125,7 +126,12 @@ import React, {
       setBarTasks(
         convertToBarTasks(
           // Make all the tasks of type 'milestone'
-          filteredTasks.map(task => ({ ...task, type: 'milestone', orderIndex: (task.thread! - 1)})),
+          filteredTasks.map(task => ({ 
+            ...task, 
+            type: 'milestone', 
+            orderIndex: threads!.indexOf(threads?.find(thread => Number(thread.id) === task.thread)!)
+            // orderIndex: (task.thread! - 1),
+          })),
           newDates,
           columnWidth,
           rowHeight,

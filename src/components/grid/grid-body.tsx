@@ -35,7 +35,6 @@ export const GridBody: React.FC<GridBodyProps> = ({
   ];
   for (let i = 0; i < tasks.length; i++) {
   // for (const task of tasks) {
-    console.log("ADDED TASK GRID-BODY (task)>>>",tasks[i])
     gridRows.push(
       <rect
         id={"Row" + i}

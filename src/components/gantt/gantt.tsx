@@ -503,3 +503,4 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     </div>
   );
 };
+

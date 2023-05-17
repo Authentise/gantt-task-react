@@ -55,7 +55,7 @@ export const ThreadsEventBarDisplay: React.FC<ThreadsEventBarDisplayProps> = ({
 
       case 'DECISION':
         return (
-          <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg x={x} y={y} width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1.1" y="1.1" width="22.8" height="22.8" rx="11.4" fill="#D57232"/>
           <path d="M12.4995 14.9004C11.3949 14.9004 10.4995 15.7958 10.4995 16.9004C10.4995 18.005 11.3949 18.9004 12.4995 18.9004C13.6041 18.9004 14.4995 18.005 14.4995 16.9004C14.4995 15.7958 13.6041 14.9004 12.4995 14.9004ZM12.4995 14.9004V12.9004M8.49951 10.9004C9.60408 10.9004 10.4995 10.005 10.4995 8.90039C10.4995 7.79582 9.60408 6.90039 8.49951 6.90039C7.39494 6.90039 6.49951 7.79582 6.49951 8.90039C6.49951 10.005 7.39494 10.9004 8.49951 10.9004ZM8.49951 10.9004V11.5671C8.49951 11.9207 8.63999 12.2598 8.89004 12.5099C9.14008 12.7599 9.47922 12.9004 9.83285 12.9004H15.1662C15.5198 12.9004 15.8589 12.7599 16.109 12.5099C16.359 12.2598 16.4995 11.9207 16.4995 11.5671V10.9004M16.4995 10.9004C17.6041 10.9004 18.4995 10.005 18.4995 8.90039C18.4995 7.79582 17.6041 6.90039 16.4995 6.90039C15.3949 6.90039 14.4995 7.79582 14.4995 8.90039C14.4995 10.005 15.3949 10.9004 16.4995 10.9004Z" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
           <rect x="1.1" y="1.1" width="22.8" height="22.8" rx="11.4" stroke="#432918" stroke-width="1.2"/>
@@ -64,7 +64,7 @@ export const ThreadsEventBarDisplay: React.FC<ThreadsEventBarDisplayProps> = ({
 
       case 'RESOLUTION':
         return (
-          <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg x={x} y={y} width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1.1" y="1.1" width="22.8" height="22.8" rx="11.4" fill="#A1C380"/>
           <path d="M16.9992 8L9.66585 15.3333L6.33252 12" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M19.6665 10.667L14.6665 15.667L13.6665 14.667" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -74,7 +74,7 @@ export const ThreadsEventBarDisplay: React.FC<ThreadsEventBarDisplayProps> = ({
 
       case 'STOPPED':
         return (
-          <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg x={x} y={y} width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1.1" y="1.1" width="22.8" height="22.8" rx="11.4" fill="#B73131"/>
           <path d="M11.0666 7.06738H8.3999V17.734H11.0666V7.06738Z" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M16.3996 7.06738H13.7329V17.734H16.3996V7.06738Z" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>

@@ -133,6 +133,7 @@ export interface StylingOption {
     fontSize: string;
     locale: string;
     tasks: Task[];
+    threads?: any[];
     selectedTaskId: string;
     /**
      * Sets selected task by id
