@@ -148,8 +148,9 @@ export interface GanttProps extends EventOption, DisplayOption, StylingOption {
 }
 
 export interface EventGanttProps extends GanttProps {
+  tasks: any[];
   events: any[];
-  threads?: Task[];
+  threads?: any[];
 }
 
 export type EventTaskGanttProps = {
