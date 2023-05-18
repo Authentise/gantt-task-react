@@ -82,7 +82,6 @@ import { TaskListTableDefault } from "../task-list/task-list-table";
     const [svgContainerWidth, setSvgContainerWidth] = useState(0);
     const [svgContainerHeight, setSvgContainerHeight] = useState(ganttHeight);
     const [barTasks, setBarTasks] = useState<BarTask[]>([]);
-    console.log("threads_event_gantt->barTasks", barTasks.map(task => ({ ...task, typeInternal: 'threads-event' })))
     const [ganttEvent, setGanttEvent] = useState<GanttEvent>({
       action: "",
     });
