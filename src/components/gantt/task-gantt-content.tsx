@@ -287,10 +287,10 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps & EventTaskGanttPr
                 <Arrow
                   key={`Arrow from ${task?.id} to ${tasks[index]?.id}`}
                   taskFrom={task}
-                  // taskTo={tasksWithEventsWithMatchingThread[index + 1] ? 
-                  //   tasksWithEventsWithMatchingThread[index + 1] : 
-                  //   task}
-                  taskTo={tasksWithEventsWithMatchingThread[index] ? tasksWithEventsWithMatchingThread[index] : tasksWithEventsWithMatchingThread[0]}
+                  taskTo={tasksWithEventsWithMatchingThread[index + 1] ? 
+                    tasksWithEventsWithMatchingThread[index + 1] : 
+                    task}
+                  // taskTo={tasksWithEventsWithMatchingThread[index] ? tasksWithEventsWithMatchingThread[index] : tasksWithEventsWithMatchingThread[0]}
                   rowHeight={rowHeight}
                   taskHeight={taskHeight}
                   arrowIndent={arrowIndent}
